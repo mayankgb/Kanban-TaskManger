@@ -1,7 +1,4 @@
 "use client"
-
-import { FaFilter } from "react-icons/fa";
-// import * as React from "react"
 import { FcGenericSortingDesc } from "react-icons/fc";
 import { Button } from "@/components/ui/button"
 import {
@@ -13,15 +10,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { sortArr, task } from "../store/atom";
-import { useMemo } from "react";
+
  
 
 export function Sorting(){
 
     const[sort,setSort] = useRecoilState(sortArr)
-    const [todo,setTodo] = useRecoilState(task)
+    const setTodo = useSetRecoilState(task)
 
     const priority = {
       "High":1,

@@ -120,7 +120,7 @@ export function AddTodo() {
         <DialogHeader>
           <DialogTitle>Add Todo</DialogTitle>
           <DialogDescription>
-            add todo sir that's it 
+            add todo sir that&apos;s it 
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">

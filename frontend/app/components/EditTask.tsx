@@ -119,7 +119,7 @@ export function EditTodo({todo}:{todo:Todo}) {
         <DialogHeader>
           <DialogTitle>Edit Todo</DialogTitle>
           <DialogDescription>
-            edit todo that's it  
+            edit todo that&apos;s it  
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">

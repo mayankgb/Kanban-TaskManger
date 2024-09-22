@@ -54,7 +54,7 @@ export default function KanbanBoard() {
   }
 
   const handleDragOver = (event: DragOverEvent) => {
-   
+   console.log(event)
   }
 
   const handleDragEnd = async (event: DragEndEvent) => {
@@ -106,7 +106,7 @@ export default function KanbanBoard() {
         })
       })
 
-      const response = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/update/${active.id}`,{
+       await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/update/${active.id}`,{
         status:overColumn?.id
       },{
         withCredentials:true

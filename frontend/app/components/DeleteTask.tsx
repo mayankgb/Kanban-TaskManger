@@ -35,6 +35,7 @@ export function DeleteTask({id ,status}:{id:string,status:string}){
             })
             toast.success("task deleted successfully")
         }catch(e){
+            console.log(e)
             setLoading(false)
             toast.error("something went wrong")
         }

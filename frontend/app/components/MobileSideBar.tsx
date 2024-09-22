@@ -1,4 +1,4 @@
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState} from "recoil";
 import { isOpen, mobileView } from "../store/atom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/button";

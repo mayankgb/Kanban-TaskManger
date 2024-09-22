@@ -16,7 +16,7 @@ export function SignUpComponent(){
     })
     const router = useRouter()
 
-    const handleSubmit = async(test:boolean)=>{
+    const handleSubmit = async()=>{
         setisDisable(true)
         try{
             const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/signup`,{
@@ -60,7 +60,7 @@ export function SignUpComponent(){
                     </div>
                 </div>
                 <div className="p-2">
-                    <Button disabled={isDisable} className="w-72 p-4" onClick={()=>handleSubmit(false)}>{isDisable?<BiLoader className="animate-spin"/>:"Signup"}</Button>
+                    <Button disabled={isDisable} className="w-72 p-4" onClick={()=>handleSubmit()}>{isDisable?<BiLoader className="animate-spin"/>:"Signup"}</Button>
                 </div>
             </div>
     )

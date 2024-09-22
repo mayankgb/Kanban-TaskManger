@@ -1,7 +1,7 @@
 "use client"
 
 import { AllTasks } from "./AllTask";
-import {AnimatePresence, motion} from "framer-motion"
+import { motion} from "framer-motion"
 import { TaskBar } from "./TaskBar";
 
 export function SideBar(){
