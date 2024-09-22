@@ -50,7 +50,7 @@ export function EditTodo({todo}:{todo:Todo}) {
         }
         setLoading(true)
         try{
-            const response = await axios.put(`http://localhost:8000/task/update/full/${todo._id}`,{
+            const response = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/update/full/${todo._id}`,{
                 todoInput
             },{withCredentials:true})
 

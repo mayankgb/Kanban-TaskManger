@@ -49,7 +49,7 @@ export function AddTodo() {
         }
         setLoading(true)
         try{
-            const response = await axios.post("http://localhost:8000/task/create",{
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/create`,{
                 todoInput
             },{withCredentials:true})
 

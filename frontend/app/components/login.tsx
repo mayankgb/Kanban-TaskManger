@@ -22,7 +22,7 @@ export function LoginComponent(){
             const loginData = test
             ? { email: "maysk03jun@gmail.com", password: "0909090" }
             : logInInput;
-            const response = await axios.post("http://localhost:8000/user/signin",{
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/signin`,{
                 loginData
             },
         {

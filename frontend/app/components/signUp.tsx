@@ -19,7 +19,7 @@ export function SignUpComponent(){
     const handleSubmit = async(test:boolean)=>{
         setisDisable(true)
         try{
-            const response = await axios.post("http://localhost:8000/user/signup",{
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/signup`,{
                 loginInput
             },{
                 withCredentials:true

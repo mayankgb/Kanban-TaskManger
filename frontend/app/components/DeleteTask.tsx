@@ -15,7 +15,7 @@ export function DeleteTask({id ,status}:{id:string,status:string}){
     const deleteTodo = async () => {
         setLoading(true)
         try{
-            const response = await axios.delete(`http://localhost:8000/task/delete/${id}`,{
+            const response = await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/delete/${id}`,{
                 withCredentials:true
             })
             console.log(response)

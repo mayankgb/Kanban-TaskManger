@@ -1,13 +1,12 @@
 "use client"
 
-import React, { useState, useMemo, useEffect } from 'react'
+import React, { useState, useMemo } from 'react'
 import { DndContext, DragOverlay, useSensors, useSensor, PointerSensor, KeyboardSensor, DragStartEvent, DragOverEvent, DragEndEvent } from '@dnd-kit/core'
 import { sortableKeyboardCoordinates, arrayMove } from '@dnd-kit/sortable'
 
 import { DroppableColumn } from './Droppable'
-import { IoReorderThreeSharp } from "react-icons/io5";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
-import { column, isOpen, task } from '../store/atom'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { column,  task } from '../store/atom'
 
 import { AddTodo } from './AddTodo'
 import axios from 'axios'
@@ -24,7 +23,6 @@ export default function KanbanBoard() {
 
 
   const [activeId, setActiveId] = useState<string | null>(null)
-  const [newTask, setNewTask] = useState('')
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -108,7 +106,7 @@ export default function KanbanBoard() {
         })
       })
 
-      const response = await axios.put(`http://localhost:8000/task/update/${active.id}`,{
+      const response = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/update/${active.id}`,{
         status:overColumn?.id
       },{
         withCredentials:true

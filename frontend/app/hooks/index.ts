@@ -17,7 +17,7 @@ export const useTodo = () =>{
 
         const main = async ()=>{
             setLoading(true)
-            const response = await axios.get("http://localhost:8000/task/getAllTask", {
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/getAllTask`, {
                 withCredentials:true
             })
             
@@ -52,8 +52,9 @@ export const useLogin= () => {
         
         const login = async()=>{
             setloading(true);
+            console.log(process.env.NEXT_PUBLIC_BACKEND_URL)
             try{
-                const response = await axios.get("http://localhost:8000/user/me",{
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/me`,{
                     withCredentials:true
                 })
     
