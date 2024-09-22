@@ -124,6 +124,7 @@ export const signIn = async(req:Request, res:Response) => {
 
         const token = jwt.sign({id:existingUser._id},process.env.JWT_SECRET!)
         res.cookie('token', token, {
+            path: "/",
             httpOnly: true, // Prevents JavaScript access to the cookie
             secure: process.env.NODE_ENV === 'production', // Set to true in production
             sameSite: "none", // Set SameSite=None in production
