@@ -1,10 +1,5 @@
 "use client"
-
-import { useTodo } from "../hooks"
-import {motion} from "framer-motion"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-
-import { Skeleton } from "@/components/ui/skeleton"
+import { Card, CardContent } from "@/components/ui/card"
 import { TodoCard } from "./TodoCard"
 import { useRecoilValue } from "recoil"
 import { filt, task } from "../store/atom"
@@ -37,7 +32,6 @@ export function AllTasks() {
         (renderTask === t.status) ?      <TodoCard key={index} t={t}/>:
         (renderTask === t.status) ?  <TodoCard key={index} t={t}/>:
         (renderTask === t.status)&& <TodoCard key={index} t={t}/>
-        // <TodoCard t={t}/>
       )))
       } 
     </div>

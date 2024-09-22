@@ -37,8 +37,11 @@ export function LoginComponent(){
             }
 
         }catch(e){
+            if (axios.isAxiosError(e)) {
+                toast.error("something went wrong")
+                console.log(e?.response?.data.message)
+            }
             setisDisable(false)
-            console.log(e)
         }
     }
 

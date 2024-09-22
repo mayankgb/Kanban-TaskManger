@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useRouter } from "next/navigation"
+import { useRouter ,usePathname} from "next/navigation"
 import { useEffect, useState } from "react"
 import { Todo } from "../lib/types"
 import { useRecoilState } from "recoil"
@@ -42,26 +42,11 @@ export const useTodo = () =>{
     return {loading,todo}
 }
 
-
-// const usecolumn = ()=>{
-//     const [todo, setTodo] = useRecoilState(task)
-//     const [loading,setLoading] = useState<boolean>(false)
-//     const [newColumn,setColumn] = useRecoilState(column)
-
-//     useEffect(()=>{
-//         todo?.map((value)=>{
-//             newColumn.map((t)=>{
-
-//             })
-//         })
-//     },[todo])
-    
-// }
-
 export const useLogin= () => {
     const [message, setMessage] = useState("")
     const [loading, setloading] = useState(false)
     const router = useRouter()
+    const pathName = usePathname()
 
     useEffect(()=>{
         
@@ -80,18 +65,30 @@ export const useLogin= () => {
                 }
             }catch(e){
                 if (axios.isAxiosError(e)) {
+                    console.log(pathName)
                     // Handle Axios-specific errors
                     if (e.response?.status === 400) {
                       console.log("Bad Request:", e.response.data.message,e.response.data);
-                      router.push("/login")
+                      if (pathName!=="/login") {
+                        console.log(pathName)
+                        router.push("/login") 
+                      }
+                      
                       setloading(false)
                     } else if (e.response?.status === 404) {
                         setloading(false)
+                        
                       console.log("Not Found:", e.response.data);
-                      router.push("/login")
+                      if (pathName!=="/login") {
+                        console.log(pathName)
+                        router.push("/login") 
+                      }
                     }else{
                         setloading(false)
-                        router.push("/login")
+                        if (pathName!=="/login") {
+                            console.log(pathName)
+                            router.push("/login") 
+                          }
 
                     }
                 }
