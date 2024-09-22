@@ -159,13 +159,13 @@ export function EditTodo({todo}:{todo:Todo}) {
             <Label htmlFor="status" className="text-right">
               status
             </Label>
-            <SelectStatus status={todo.status} setStatus={setTodoInput} />
+            <SelectStatus status={todoInput.status} setStatus={setTodoInput} />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="priority" className="text-right">
               priority
             </Label>
-            <SelectPriority priority={todo.priority} setPriority={setTodoInput}/>
+            <SelectPriority priority={todoInput.priority} setPriority={setTodoInput}/>
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="date" className="text-right">
