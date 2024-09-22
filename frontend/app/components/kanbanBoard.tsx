@@ -111,7 +111,7 @@ export default function KanbanBoard() {
       },
     {
       headers:{
-        Authorization:JSON.parse(localStorage.getItem("token")||"")
+        Authorization:`Bearer ${JSON.parse(localStorage.getItem("token")||JSON.stringify("dfdsfdsf"))}`
       }
     })
   

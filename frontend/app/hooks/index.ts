@@ -16,29 +16,33 @@ export const useTodo = () =>{
 
     useEffect(()=>{
 
-        const main = async ()=>{
+        const main = async () => {
             setLoading(true)
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/getAllTask`,{
-                headers:{
-                  Authorization:JSON.parse(localStorage.getItem("token")||"")
-                }
-              })
-            
-                const data = response.data.allTask
-                // console.log(response.data)
-                setTodo(data)
-                const arr = data?.filter((val:Todo)=>val.status === "ToDo")
-                console.log(arr)
-                const newCol = add.map((col)=>({
-                    ...col,
-                    tasks:data?.filter((val:Todo)=>val.status === col.id)
-                  }
-                  ))
-                  console.log(newCol)
-                  setAdd(newCol)
-                setLoading(false)
+            try{
+                  const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/getAllTask`,{
+                    headers:{
+                      Authorization:`Bearer ${JSON.parse(localStorage.getItem("token")||JSON.stringify("dfdsfdsf"))}`
+                    }
+                  })
+              
+                  const data = response.data.allTask
+                  // console.log(response.data)
+                  setTodo(data)
+                  const arr = data?.filter((val:Todo)=>val.status === "ToDo")
+                  console.log(arr)
+                  const newCol = add.map((col)=>({
+                      ...col,
+                      tasks:data?.filter((val:Todo)=>val.status === col.id)
+                    }
+                    ))
+                    console.log(newCol)
+                    setAdd(newCol)
+                  setLoading(false)
 
-        }
+                }catch(e){
+                  toast.error("you are not logged in")
+                }
+            }
         main() 
     },[])
 
@@ -53,13 +57,15 @@ export const useLogin= () => {
 
     useEffect(()=>{
         
-        const login = async()=>{
+        const login = async () => {
+            console.log()
             setloading(true);
             console.log(process.env.NEXT_PUBLIC_BACKEND_URL)
+            console.log(localStorage.getItem("token"))
             try{
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/me`,{
                     headers:{
-                      Authorization:JSON.parse(localStorage.getItem("token")||"")
+                      Authorization:`Bearer ${JSON.parse(localStorage.getItem("token")||JSON.stringify("dfdsfdsf"))}`
                     }
                   })
     
@@ -71,7 +77,12 @@ export const useLogin= () => {
                 }
             }catch(e){
                 if (axios.isAxiosError(e)) {
-                    localStorage.removeItem("token")
+                  toast.error("you are not logged in")
+
+                    if (localStorage.getItem("token")) {
+                       localStorage.removeItem("token")
+                    }
+
                     console.log(pathName)
                     // Handle Axios-specific errors
                     if (e.response?.status === 400) {
@@ -106,6 +117,6 @@ export const useLogin= () => {
         login()
     },[])
 
-    return{message,loading}
+    return{loading,message}
 
 }

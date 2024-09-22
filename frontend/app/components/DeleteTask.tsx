@@ -18,7 +18,7 @@ export function DeleteTask({id ,status}:{id:string,status:string}){
         try{
             const response = await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/delete/${id}`,{
                 headers:{
-                    Authorization:JSON.parse(localStorage.getItem("token")||"")
+                  Authorization:`Bearer ${JSON.parse(localStorage.getItem("token")||JSON.stringify("dfdsfdsf"))}`
                 }
             })
             console.log(response)

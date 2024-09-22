@@ -167,25 +167,34 @@ export const logout= async (req:Request, res:Response)=>{
 }
 
 export const me = async (req:Request, res:Response)=>{
-    const token = req.cookies.token
+    try{
+        const token = req.cookies.token || req.headers.authorization?.split(" ")[1]
+        console.log(token)
 
-    if (!token) {
-        return res.status(400).json({
-            message:"token is not present"
-        })
-    }
-
-    const verify = jwt.verify(token.toString(),process.env.JWT_SECRET!)
-    if (!verify) {
-        res.clearCookie("token")
-        return res.status(400).json({
-            message:"user not logged in"
-        })
-    }
+        if (!token) {
+            return res.status(400).json({
+                message:"token is not present"
+            })
+        }
     
-    return res.json({
-        message:"welcome back "
-    })
+        const verify = jwt.verify(token.toString(),process.env.JWT_SECRET!)
+        if (!verify) {
+            if (!req.cookies.token) {
+                res.clearCookie("token")   
+            }
+            return res.status(400).json({
+                message:"user not logged in"
+            })
+        }
+        
+        return res.json({
+            message:"welcome back "
+        })
+    }catch(e){
+        return res.status(400).json({
+            message:"something went wrong"
+        })
+    }
 
 }
 
