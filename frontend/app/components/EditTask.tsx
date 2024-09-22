@@ -20,7 +20,7 @@ import { useSetRecoilState } from "recoil"
 import { column, task } from "../store/atom"
 import { Todo } from "../lib/types"
 import { MdEdit } from "react-icons/md"
-
+axios.defaults.withCredentials = true;
 
 export function EditTodo({todo}:{todo:Todo}) {
 
@@ -52,7 +52,7 @@ export function EditTodo({todo}:{todo:Todo}) {
         try{
             const response = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/update/full/${todo._id}`,{
                 todoInput
-            },{withCredentials:true})
+            })
 
             if(response.status===200){
                 const data = response.data.savedTask 

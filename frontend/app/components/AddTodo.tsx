@@ -20,6 +20,7 @@ import axios from "axios"
 import { useSetRecoilState } from "recoil"
 import { column, task } from "../store/atom"
 import { Todo } from "../lib/types"
+axios.defaults.withCredentials = true;
 
 export function AddTodo() {
 
@@ -51,7 +52,7 @@ export function AddTodo() {
         try{
             const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/create`,{
                 todoInput
-            },{withCredentials:true})
+            })
 
             if(response.status===200){
                 const data = response.data.savedTask 

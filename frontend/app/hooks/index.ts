@@ -6,6 +6,7 @@ import { useRecoilState } from "recoil"
 import { column, task } from "../store/atom"
 import toast from "react-hot-toast"
 
+axios.defaults.withCredentials = true
 
 export const useTodo = () =>{
     const [todo, setTodo] = useRecoilState(task)
@@ -17,9 +18,7 @@ export const useTodo = () =>{
 
         const main = async ()=>{
             setLoading(true)
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/getAllTask`, {
-                withCredentials:true
-            })
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/getAllTask`)
             
                 const data = response.data.allTask
                 // console.log(response.data)
@@ -54,9 +53,7 @@ export const useLogin= () => {
             setloading(true);
             console.log(process.env.NEXT_PUBLIC_BACKEND_URL)
             try{
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/me`,{
-                    withCredentials:true
-                })
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/me`)
     
                 if (response.status===200) {
                     router.push("/dashboard")

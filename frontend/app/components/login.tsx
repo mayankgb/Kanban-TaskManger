@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 import toast from "react-hot-toast";
 import { BiLoader } from "react-icons/bi";
+axios.defaults.withCredentials = true
 
 export function LoginComponent(){
     const [isDisable, setisDisable] = useState(false)
@@ -24,10 +25,7 @@ export function LoginComponent(){
             : logInInput;
             const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/signin`,{
                 loginData
-            },
-        {
-            withCredentials:true
-        })
+            })
 
             if (response.status===200) {
                 router.push("/dashboard")

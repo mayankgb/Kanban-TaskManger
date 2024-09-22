@@ -5,6 +5,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { useSetRecoilState } from "recoil";
 import { column, task } from "../store/atom";
 import { BiLoader } from "react-icons/bi";
+axios.defaults.withCredentials = true;
 
 export function DeleteTask({id ,status}:{id:string,status:string}){
 
@@ -15,9 +16,7 @@ export function DeleteTask({id ,status}:{id:string,status:string}){
     const deleteTodo = async () => {
         setLoading(true)
         try{
-            const response = await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/delete/${id}`,{
-                withCredentials:true
-            })
+            const response = await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/delete/${id}`)
             console.log(response)
             setLoading(false)
             setTodo((prev)=>prev.filter((val)=>val._id!==id))

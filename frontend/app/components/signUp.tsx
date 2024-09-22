@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 import { BiLoader } from "react-icons/bi";
 
+axios.defaults.withCredentials = true
+
 export function SignUpComponent(){
     const [isDisable, setisDisable] = useState(false)
     const [loginInput, setLoginInput] = useState({
@@ -21,8 +23,6 @@ export function SignUpComponent(){
         try{
             const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/signup`,{
                 loginInput
-            },{
-                withCredentials:true
             })
 
             if (response.status===200) {

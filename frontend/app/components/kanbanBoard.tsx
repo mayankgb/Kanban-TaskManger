@@ -14,7 +14,7 @@ import { Todo } from '../lib/types'
 import { TodoCard } from './TodoCard'
 import { OpenSidebar } from './SideButton'
 
-
+axios.defaults.withCredentials = true
 
 export default function KanbanBoard() {
  
@@ -108,8 +108,6 @@ export default function KanbanBoard() {
 
        await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/update/${active.id}`,{
         status:overColumn?.id
-      },{
-        withCredentials:true
       })
   
     } else {
