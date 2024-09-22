@@ -103,6 +103,7 @@ export function DatePicker({date,setDate}:{date:string,setDate:Dispatch<SetState
           selected={new Date(date)}
           onSelect={(e)=>handleDate(e)}
           initialFocus
+          disabled={(dis) => dis < new Date()}
         />
       </PopoverContent>
     </Popover>
