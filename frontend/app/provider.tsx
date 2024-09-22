@@ -7,7 +7,7 @@ import { BiLoader } from "react-icons/bi"
 
 export default function Provider({children}:{children:React.ReactNode}){
 
-    const {message, loading} = useLogin()
+    const {loading} = useLogin()
 
     if (loading) {
         return(
