@@ -13,6 +13,7 @@ import axios from 'axios'
 import { Todo } from '../lib/types'
 import { TodoCard } from './TodoCard'
 import { OpenSidebar } from './SideButton'
+import { Logout } from './Logout'
 
 axios.defaults.withCredentials = true
 
@@ -132,11 +133,14 @@ export default function KanbanBoard() {
   
   return (
     <div className="p-4 w-full mx-auto">
-      <div className='flex items-center'>
-        <div className=' lg:hidden block'>
-          <OpenSidebar/>
+      <div className='flex items-center justify-between '>
+        <div className='flex items-center justify-between'>
+          <div className=' lg:hidden block'>
+            <OpenSidebar/>
+          </div>
+          <h1 className="text-2xl ml-2 mt-2 font-bold mb-4">Kanban TodoManager</h1>
         </div>
-        <h1 className="text-2xl ml-2 mt-2 font-bold mb-4">Kanban TodoManager</h1>
+        <div><Logout/></div>
       </div>
       <div className="flex mb-4 ml-2 gap-6">
        <AddTodo/>

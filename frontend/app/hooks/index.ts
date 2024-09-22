@@ -41,7 +41,6 @@ export const useTodo = () =>{
 
                 }catch(e){
                   console.log(e)
-                  toast.error("you are not logged in")
                 }
             }
         main() 
@@ -71,14 +70,15 @@ export const useLogin= () => {
                   })
     
                 if (response.status===200) {
-                    router.push("/dashboard")
+                  if (pathName!=="/dashboard") {
+                    router.push("/dashboard") 
+                  }
                     toast.success(response.data.message)
                     setloading(false)
                     setMessage(response.data.message)
                 }
             }catch(e){
                 if (axios.isAxiosError(e)) {
-                  toast.error("you are not logged in")
 
                     if (localStorage.getItem("token")) {
                        localStorage.removeItem("token")
