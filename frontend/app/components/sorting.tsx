@@ -34,7 +34,7 @@ export function Sorting(){
           const sortedTodos = [...prev].sort((a, b) => {
             const aPriority = priority[a.priority];
             const bPriority = priority[b.priority];
-            return sort === "hightolow" ? aPriority - bPriority : bPriority - aPriority;
+            return value === "hightolow" ? aPriority - bPriority : bPriority - aPriority;
           });
           return sortedTodos; // Return the sorted array
         });
