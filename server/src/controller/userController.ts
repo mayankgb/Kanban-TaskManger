@@ -80,8 +80,10 @@ export const signUp = async (req:Request,res:Response)=>{
             maxAge: 1000 * 60 * 60 * 24, // Cookie expiration time (1 day in this case)
           });
 
+
         res.status(200).json({
-            message:"account created successfully"
+            message:"account created successfully",
+            token:token
         })
 
     }catch(e){
@@ -132,7 +134,8 @@ export const signIn = async(req:Request, res:Response) => {
           });
 
         return res.status(200).json({
-            message:"logged in!"
+            message:"logged in!",
+            token:token
         })
 
     }catch(e){

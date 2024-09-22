@@ -52,6 +52,10 @@ export function EditTodo({todo}:{todo:Todo}) {
         try{
             const response = await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/update/full/${todo._id}`,{
                 todoInput
+            },{
+              headers:{
+                Authorization:JSON.parse(localStorage.getItem("token")||"")
+              }
             })
 
             if(response.status===200){

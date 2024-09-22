@@ -16,7 +16,11 @@ export function DeleteTask({id ,status}:{id:string,status:string}){
     const deleteTodo = async () => {
         setLoading(true)
         try{
-            const response = await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/delete/${id}`)
+            const response = await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/delete/${id}`,{
+                headers:{
+                    Authorization:JSON.parse(localStorage.getItem("token")||"")
+                }
+            })
             console.log(response)
             setLoading(false)
             setTodo((prev)=>prev.filter((val)=>val._id!==id))

@@ -108,7 +108,12 @@ export default function KanbanBoard() {
 
        await axios.put(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/update/${active.id}`,{
         status:overColumn?.id
-      })
+      },
+    {
+      headers:{
+        Authorization:JSON.parse(localStorage.getItem("token")||"")
+      }
+    })
   
     } else {
       setNewCol(prev => {

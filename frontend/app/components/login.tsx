@@ -28,6 +28,7 @@ export function LoginComponent(){
             })
 
             if (response.status===200) {
+                localStorage.setItem("token",JSON.stringify(response.data.token))
                 router.push("/dashboard")
                 setisDisable(false)
                 setLoginInput({email:"",password:""})

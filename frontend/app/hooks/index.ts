@@ -18,7 +18,11 @@ export const useTodo = () =>{
 
         const main = async ()=>{
             setLoading(true)
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/getAllTask`)
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/getAllTask`,{
+                headers:{
+                  Authorization:JSON.parse(localStorage.getItem("token")||"")
+                }
+              })
             
                 const data = response.data.allTask
                 // console.log(response.data)
@@ -53,7 +57,11 @@ export const useLogin= () => {
             setloading(true);
             console.log(process.env.NEXT_PUBLIC_BACKEND_URL)
             try{
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/me`)
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/me`,{
+                    headers:{
+                      Authorization:JSON.parse(localStorage.getItem("token")||"")
+                    }
+                  })
     
                 if (response.status===200) {
                     router.push("/dashboard")
@@ -63,6 +71,7 @@ export const useLogin= () => {
                 }
             }catch(e){
                 if (axios.isAxiosError(e)) {
+                    localStorage.removeItem("token")
                     console.log(pathName)
                     // Handle Axios-specific errors
                     if (e.response?.status === 400) {
@@ -82,6 +91,7 @@ export const useLogin= () => {
                         router.push("/login") 
                       }
                     }else{
+                        localStorage.getItem("token")
                         setloading(false)
                         if (pathName!=="/login") {
                             console.log(pathName)

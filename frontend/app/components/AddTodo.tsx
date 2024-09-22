@@ -52,6 +52,10 @@ export function AddTodo() {
         try{
             const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/task/create`,{
                 todoInput
+            },{
+              headers:{
+                Authorization:JSON.parse(localStorage.getItem("token")||"")
+              }
             })
 
             if(response.status===200){
