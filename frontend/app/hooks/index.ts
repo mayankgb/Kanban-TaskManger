@@ -40,6 +40,7 @@ export const useTodo = () =>{
                   setLoading(false)
 
                 }catch(e){
+                  console.log(e)
                   toast.error("you are not logged in")
                 }
             }
