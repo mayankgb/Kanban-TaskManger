@@ -25,20 +25,21 @@ export function Sorting(){
       "Medium":2,
       "Low":3
     }
-    const handleClick = (value:string)=>{
-      if (sort!==value) {
-        setSort(value)
-        if (sort==="hightolow") {
-          setTodo((prev)=>[...prev].sort((a,b)=>priority[a.priority]-priority[b.priority]))
-        }
-        else if(sort==="lowtohigh"){
-          setTodo((prev)=>[...prev].sort((a,b)=>priority[a.priority]-priority[b.priority]).reverse())
-        }
-        
-      }else{
-        return
+    const handleClick = (value: string) => {
+      if (sort !== value) {
+        setSort(value);
+  
+        // Retrieve the current todos
+        setTodo((prev) => {
+          const sortedTodos = [...prev].sort((a, b) => {
+            const aPriority = priority[a.priority];
+            const bPriority = priority[b.priority];
+            return sort === "hightolow" ? aPriority - bPriority : bPriority - aPriority;
+          });
+          return sortedTodos; // Return the sorted array
+        });
       }
-    }
+    };
 
     return(
         <DropdownMenu>
