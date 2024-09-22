@@ -73,7 +73,12 @@ export const signUp = async (req:Request,res:Response)=>{
 
 
         const token = jwt.sign({id:newUser._id},process.env.JWT_SECRET!)
-        res.cookie('token', token)
+        res.cookie('token', token, {
+            httpOnly: true, // Prevents JavaScript access to the cookie
+            secure: process.env.NODE_ENV === 'production', // Set to true in production
+            sameSite: "none", // Set SameSite=None in production
+            maxAge: 1000 * 60 * 60 * 24, // Cookie expiration time (1 day in this case)
+          });
 
         res.status(200).json({
             message:"account created successfully"
@@ -118,7 +123,12 @@ export const signIn = async(req:Request, res:Response) => {
         }
 
         const token = jwt.sign({id:existingUser._id},process.env.JWT_SECRET!)
-        res.cookie('token', token)
+        res.cookie('token', token, {
+            httpOnly: true, // Prevents JavaScript access to the cookie
+            secure: process.env.NODE_ENV === 'production', // Set to true in production
+            sameSite: "none", // Set SameSite=None in production
+            maxAge: 1000 * 60 * 60 * 24, // Cookie expiration time (1 day in this case)
+          });
 
         return res.status(200).json({
             message:"logged in!"
