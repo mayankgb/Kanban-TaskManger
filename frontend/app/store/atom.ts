@@ -8,7 +8,7 @@ export const task = atom<Todo[]>({
 
 export const sortArr = atom<string>({
     key:"sortArr",
-    default:"hightolow"
+    default:""
 })
 
 export const filt = atom<string>({
